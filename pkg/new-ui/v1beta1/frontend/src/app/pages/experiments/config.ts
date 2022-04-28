@@ -3,11 +3,8 @@ import {
   StatusValue,
   ActionListValue,
   ActionIconValue,
-  TRUNCATE_TEXT_SIZE,
   TableConfig,
   DateTimeValue,
-  TemplateValue,
-  ChipsListValue,
   ComponentValue,
 } from 'kubeflow';
 import {
@@ -15,7 +12,6 @@ import {
   parseSucceededTrials,
   parseRunningTrials,
   parseFailedTrials,
-  parseTotalTrials,
 } from './utils';
 import { ExperimentOptimalTrialComponent } from './optimal-trial/experiment-optimal-trial.component';
 

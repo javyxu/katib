@@ -4,12 +4,12 @@ FROM ubuntu AS fetch-kubeflow-kubeflow
 RUN apt-get update && apt-get install git -y
 
 WORKDIR /kf
-RUN git clone https://github.com/kubeflow/kubeflow.git && \
+RUN git clone https://github.com/javyxu/kubeflow.git && \
     cd kubeflow && \
-    git checkout ecb72c2
+    git checkout v1.5-subpath
 
 # --- Build the frontend kubeflow library ---
-FROM node:12 AS frontend-kubeflow-lib
+FROM node:12-buster-slim AS frontend-kubeflow-lib
 
 WORKDIR /src
 
@@ -40,7 +40,8 @@ WORKDIR /go/src/github.com/kubeflow/katib
 # Download packages.
 COPY go.mod .
 COPY go.sum .
-RUN go mod download -x
+RUN go env -w GOPROXY=https://goproxy.cn,direct && \
+    go mod download -x
 
 # Copy sources.
 COPY cmd/ cmd/
